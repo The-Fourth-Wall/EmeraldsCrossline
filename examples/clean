@@ -1,0 +1,4 @@
+#/bin/sh
+
+rm a.out history.txt
+cd .. && em clean && cd examples
