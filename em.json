@@ -14,22 +14,22 @@
   "compile-flags": {
     "cc": "clang",
     "debug": {
-      "opt": "-Og -g",
-      "version": "-std=c89",
-      "flags": "-Wall -Wextra -Werror -pedantic -pedantic-errors -Wpedantic",
-      "warnings": "-Wno-int-conversion -Wno-incompatible-pointer-types"
+      "opt": "-Og",
+      "version": "-std=c2x",
+      "flags": "-g -fsanitize=address",
+      "warnings": "-Wall -Wextra -pedantic -pedantic-errors -Wno-error -Wno-pedantic -Wno-unused-parameter"
     },
     "release": {
       "opt": "-O2",
       "version": "-std=c2x",
       "flags": "",
-      "warnings": "-Wno-int-conversion"
+      "warnings": ""
     },
     "test": {
-      "opt": "-O2",
+      "opt": "-Og",
       "version": "-std=c2x",
-      "flags": "",
-      "warnings": "-Wno-int-conversion -Wno-implicit-function-declaration -Wno-incompatible-pointer-types"
+      "flags": "-g -fsanitize=address",
+      "warnings": ""
     }
   },
 
