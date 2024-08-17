@@ -24,12 +24,6 @@
       "version": "-std=c2x",
       "flags": "",
       "warnings": ""
-    },
-    "test": {
-      "opt": "-Og",
-      "version": "-std=c11",
-      "flags": "-g -fsanitize=address",
-      "warnings": "-Wall -Wextra -pedantic -pedantic-errors -Wno-error -Wno-pedantic -Wno-unused-parameter -Wno-unused-function"
     }
   },
 
