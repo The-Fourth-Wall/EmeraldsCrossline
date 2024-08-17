@@ -15,9 +15,9 @@
     "cc": "clang",
     "debug": {
       "opt": "-Og",
-      "version": "-std=c2x",
+      "version": "-std=c11",
       "flags": "-g -fsanitize=address",
-      "warnings": "-Wall -Wextra -pedantic -pedantic-errors -Wno-error -Wno-pedantic -Wno-unused-parameter"
+      "warnings": "-Wall -Wextra -pedantic -pedantic-errors -Wno-error -Wno-pedantic -Wno-unused-parameter -Wno-unused-function"
     },
     "release": {
       "opt": "-O2",
@@ -27,9 +27,9 @@
     },
     "test": {
       "opt": "-Og",
-      "version": "-std=c2x",
+      "version": "-std=c11",
       "flags": "-g -fsanitize=address",
-      "warnings": ""
+      "warnings": "-Wall -Wextra -pedantic -pedantic-errors -Wno-error -Wno-pedantic -Wno-unused-parameter -Wno-unused-function"
     }
   },
 
