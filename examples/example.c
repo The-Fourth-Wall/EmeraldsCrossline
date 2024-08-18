@@ -19,7 +19,7 @@ gcc -Wall crossline.c example.c -o example
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../export/crossline/crossline.h"
+#include "../src/crossline/crossline.h"
 
 static void completion_hook (char const *buf, crossline_completions_t *pCompletion)
 {

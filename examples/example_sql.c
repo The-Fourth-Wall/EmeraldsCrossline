@@ -31,7 +31,7 @@ gcc -Wall crossline.c example_sql.c -o example_sql
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../export/crossline/crossline.h"
+#include "../src/crossline/crossline.h"
 
 #ifdef _WIN32
 	#define strcasecmp				_stricmp

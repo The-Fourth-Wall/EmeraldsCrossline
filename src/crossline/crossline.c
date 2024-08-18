@@ -188,7 +188,7 @@ enum {
 
 /*****************************************************************************/
 
-typedef struct crossline_completions_t {
+struct crossline_completions_t {
 	int		num;
 	char	word[CROSS_COMPLET_MAX_LINE][CROSS_COMPLET_WORD_LEN];
 	char	help[CROSS_COMPLET_MAX_LINE][CROSS_COMPLET_HELP_LEN];
@@ -196,7 +196,7 @@ typedef struct crossline_completions_t {
 	crossline_color_e	color_word[CROSS_COMPLET_MAX_LINE];
 	crossline_color_e	color_help[CROSS_COMPLET_MAX_LINE];
 	crossline_color_e	color_hints;
-} crossline_completions_t;
+};
 
 static char		s_word_delimiter[64] = CROSS_DFT_DELIMITER;
 static char 	s_history_buf[CROSS_HISTORY_MAX_LINE][CROSS_HISTORY_BUF_LEN];
@@ -1032,7 +1032,7 @@ static int crossline_getkey (int *is_esc)
 }
 
 static void crossline_winchg_event (int arg)
-{ s_got_resize = 1; }
+{ s_got_resize = 1; (void)arg; }
 static void crossline_winchg_reg (void)
 {
 	struct sigaction sa;
