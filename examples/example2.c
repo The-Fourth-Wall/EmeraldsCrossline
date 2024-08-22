@@ -191,11 +191,11 @@ int main ()
 	crossline_history_load ("history.txt");
 	crossline_prompt_color_set (CROSSLINE_FGCOLOR_BRIGHT | CROSSLINE_FGCOLOR_GREEN);
 
-	// Readline with initail text input
+	/* Readline with initail text input */
 	if (NULL != crossline_readline2 ("Crossline> ", buf, sizeof(buf))) {
 		printf ("Read line: \"%s\"\n", buf);
 	}
-	// Readline loop
+	/* Readline loop */
 	while (NULL != crossline_readline ("Crossline> ", buf, sizeof(buf))) {
 		printf ("Read line: \"%s\"\n", buf);
 

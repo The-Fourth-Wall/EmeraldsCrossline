@@ -118,7 +118,7 @@ void sql_completion_hook (char const *buf, crossline_completions_t *pCompletion)
 	}
 	last_ch = buf[strlen(buf) - 1];
 	switch (cmd) {
-	case CMD_INSERT: // INSERT INTO <table> SET column1=value1,column2=value2,...
+	case CMD_INSERT: /* INSERT INTO <table> SET column1=value1,column2=value2,... */
 		if ((1 == num) && (' ' == last_ch)) {
 			crossline_completion_add (pCompletion, "INTO", NULL);
 		} else if ((2 == num) && (' ' == last_ch)) {
@@ -129,7 +129,7 @@ void sql_completion_hook (char const *buf, crossline_completions_t *pCompletion)
 			crossline_hints_set_color (pCompletion, "column1=value1,column2=value2,...", col_color);
 		}
 		break;
-	case CMD_SELECT: // SELECT < * | column1,columnm2,...> FROM <table> [WHERE] [ORDER BY] [LIMIT] [OFFSET]
+	case CMD_SELECT: /* SELECT < * | column1,columnm2,...> FROM <table> [WHERE] [ORDER BY] [LIMIT] [OFFSET] */
 		if ((1 == num) && (' ' == last_ch)) {
 			crossline_hints_set_color (pCompletion, "* | column1,columnm2,...", col_color);
 		} else if ((2 == num) && (' ' == last_ch)) {
@@ -142,7 +142,7 @@ void sql_completion_hook (char const *buf, crossline_completions_t *pCompletion)
 			sql_add_completion (pCompletion, split[num-1], sql_caluse, NULL);
 		}
 		break;
-	case CMD_UPDATE: // UPDATE <table> SET column1=value1,column2=value2 [WHERE] [ORDER BY] [LIMIT] [OFFSET]
+	case CMD_UPDATE: /* UPDATE <table> SET column1=value1,column2=value2 [WHERE] [ORDER BY] [LIMIT] [OFFSET] */
 		if ((1 == num) && (' ' == last_ch)) {
 			crossline_hints_set_color (pCompletion, "table name", tbl_color);
 		} else if ((2 == num) && (' ' == last_ch)) {
@@ -155,7 +155,7 @@ void sql_completion_hook (char const *buf, crossline_completions_t *pCompletion)
 			sql_add_completion (pCompletion, split[num-1], sql_caluse, NULL);
 		}
 		break;
-	case CMD_DELETE: // DELETE FROM <table> [WHERE] [ORDER BY] [LIMIT] [OFFSET]
+	case CMD_DELETE: /* DELETE FROM <table> [WHERE] [ORDER BY] [LIMIT] [OFFSET] */
 		if ((1 == num) && (' ' == last_ch)) {
 			crossline_completion_add (pCompletion, "FROM", NULL);
 		} else if ((2 == num) && (' ' == last_ch)) {
@@ -166,7 +166,7 @@ void sql_completion_hook (char const *buf, crossline_completions_t *pCompletion)
 			sql_add_completion (pCompletion, split[num-1], sql_caluse, NULL);
 		}
 		break;
-	case CMD_CREATE: // CREATE [UNIQUE] INDEX <name> ON <table> (column1,column2,...)
+	case CMD_CREATE: /* CREATE [UNIQUE] INDEX <name> ON <table> (column1,column2,...) */
 		if ((1 == num) && (' ' == last_ch)) {
 			sql_add_completion (pCompletion, "", sql_index, NULL);
 		} else if ((2 == num) && (' ' != last_ch)) {
@@ -189,7 +189,7 @@ void sql_completion_hook (char const *buf, crossline_completions_t *pCompletion)
 			}
 		}
 		break;
-	case CMD_DROP:	// DROP TABLE <name>, DROP INDEX <name>
+	case CMD_DROP:	/* DROP TABLE <name>, DROP INDEX <name> */
 		if ((1 == num) && (' ' == last_ch)) {
 			sql_add_completion (pCompletion, "", sql_drop, NULL);
 		} else if ((2 == num) && (' ' != last_ch)) {
@@ -202,14 +202,14 @@ void sql_completion_hook (char const *buf, crossline_completions_t *pCompletion)
 			}
 		}
 		break;
-	case CMD_SHOW: // SHOW TABLES, SHOW DATABASES
+	case CMD_SHOW: /* SHOW TABLES, SHOW DATABASES */
 		if ((1 == num) && (' ' == last_ch)) {
 			sql_add_completion (pCompletion, "", sql_show, NULL);
 		} else if ((2 == num) && (' ' != last_ch)) {
 			sql_add_completion (pCompletion, split[1], sql_show, NULL);
 		}
 		break;
-	case CMD_DESCRIBE: // describe <table>
+	case CMD_DESCRIBE: /* describe <table> */
 		if (' ' == last_ch) {
 			crossline_hints_set_color (pCompletion, "table name", tbl_color);
 		}

@@ -68,21 +68,21 @@
 
 /*****************************************************************************/
 
-// Default word delimiters for move and cut
+/* Default word delimiters for move and cut */
 #define CROSS_DFT_DELIMITER			" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 
-#define CROSS_HISTORY_MAX_LINE		256		// Maximum history line number
-#define CROSS_HISTORY_BUF_LEN		4096	// History line length
-#define CROSS_HIS_MATCH_PAT_NUM		16		// History search pattern number
+#define CROSS_HISTORY_MAX_LINE		256		/* Maximum history line number */
+#define CROSS_HISTORY_BUF_LEN		4096	/* History line length */
+#define CROSS_HIS_MATCH_PAT_NUM		16		/* History search pattern number */
 
-#define CROSS_COMPLET_MAX_LINE		1024	// Maximum completion word number
-#define CROSS_COMPLET_WORD_LEN		64		// Completion word length
-#define CROSS_COMPLET_HELP_LEN		256		// Completion word's help length
-#define CROSS_COMPLET_HINT_LEN		128		// Completion syntax hints length
+#define CROSS_COMPLET_MAX_LINE		1024	/* Maximum completion word number */
+#define CROSS_COMPLET_WORD_LEN		64		/* Completion word length */
+#define CROSS_COMPLET_HELP_LEN		256		/* Completion word's help length */
+#define CROSS_COMPLET_HINT_LEN		128		/* Completion syntax hints length */
 
-// Make control-characters readable
+/* Make control-characters readable */
 #define CTRL_KEY(key)				(key - 0x40)
-// Build special key code for escape sequences
+/* Build special key code for escape sequences */
 #define ALT_KEY(key)				(key + ((KEY_ESC+1)<<8))
 #define ESC_KEY3(ch)				((KEY_ESC<<8) + ch)
 #define ESC_KEY4(ch1,ch2)			((KEY_ESC<<8) + ((ch1)<<16) + ch2)
@@ -92,96 +92,96 @@
 /*****************************************************************************/
 
 enum {
-	KEY_TAB			= 9,	// Autocomplete.
-	KEY_BACKSPACE	= 8,	// Delete character before cursor.
-	KEY_ENTER		= 13,	// Accept line. (Linux)
-	KEY_ENTER2		= 10,	// Accept line. (Windows)
-	KEY_ESC			= 27,	// Escapce
-	KEY_DEL2		= 127,  // It's treaded as Backspace is Linux
-	KEY_DEBUG		= 30,	// Ctrl-^ Enter keyboard debug mode
+	KEY_TAB			= 9,	/* Autocomplete. */
+	KEY_BACKSPACE	= 8,	/* Delete character before cursor. */
+	KEY_ENTER		= 13,	/* Accept line. (Linux) */
+	KEY_ENTER2		= 10,	/* Accept line. (Windows) */
+	KEY_ESC			= 27,	/* Escapce */
+	KEY_DEL2		= 127,  /* It's treaded as Backspace is Linux */
+	KEY_DEBUG		= 30,	/* Ctrl-^ Enter keyboard debug mode */
 
-#ifdef _WIN32 // Windows
+#ifdef _WIN32 /* Windows */
 
-	KEY_INSERT		= (KEY_ESC<<8) + 'R', // Paste last cut text.
-	KEY_DEL			= (KEY_ESC<<8) + 'S', // Delete character under cursor.
-	KEY_HOME		= (KEY_ESC<<8) + 'G', // Move cursor to start of line.
-	KEY_END			= (KEY_ESC<<8) + 'O', // Move cursor to end of line.
-	KEY_PGUP		= (KEY_ESC<<8) + 'I', // Move to first line in history.
-	KEY_PGDN		= (KEY_ESC<<8) + 'Q', // Move to end of input history.
-	KEY_UP			= (KEY_ESC<<8) + 'H', // Fetch previous line in history.
-	KEY_DOWN		= (KEY_ESC<<8) + 'P', // Fetch next line in history.
-	KEY_LEFT		= (KEY_ESC<<8) + 'K', // Move back a character.
-	KEY_RIGHT		= (KEY_ESC<<8) + 'M', // Move forward a character.
+	KEY_INSERT		= (KEY_ESC<<8) + 'R', /* Paste last cut text. */
+	KEY_DEL			= (KEY_ESC<<8) + 'S', /* Delete character under cursor. */
+	KEY_HOME		= (KEY_ESC<<8) + 'G', /* Move cursor to start of line. */
+	KEY_END			= (KEY_ESC<<8) + 'O', /* Move cursor to end of line. */
+	KEY_PGUP		= (KEY_ESC<<8) + 'I', /* Move to first line in history. */
+	KEY_PGDN		= (KEY_ESC<<8) + 'Q', /* Move to end of input history. */
+	KEY_UP			= (KEY_ESC<<8) + 'H', /* Fetch previous line in history. */
+	KEY_DOWN		= (KEY_ESC<<8) + 'P', /* Fetch next line in history. */
+	KEY_LEFT		= (KEY_ESC<<8) + 'K', /* Move back a character. */
+	KEY_RIGHT		= (KEY_ESC<<8) + 'M', /* Move forward a character. */
 
-	KEY_CTRL_DEL	= (KEY_ESC<<8) + 147, // Cut word following cursor.
-	KEY_CTRL_HOME	= (KEY_ESC<<8) + 'w', // Cut from start of line to cursor.
-	KEY_CTRL_END	= (KEY_ESC<<8) + 'u', // Cut from cursor to end of line.
-	KEY_CTRL_UP		= (KEY_ESC<<8) + 141, // Uppercase current or following word.
-	KEY_CTRL_DOWN	= (KEY_ESC<<8) + 145, // Lowercase current or following word.
-	KEY_CTRL_LEFT	= (KEY_ESC<<8) + 's', // Move back a word.
-	KEY_CTRL_RIGHT	= (KEY_ESC<<8) + 't', // Move forward a word.
-	KEY_CTRL_BACKSPACE	= (KEY_ESC<<8) + 127, // Cut from start of line to cursor.
+	KEY_CTRL_DEL	= (KEY_ESC<<8) + 147, /* Cut word following cursor. */
+	KEY_CTRL_HOME	= (KEY_ESC<<8) + 'w', /* Cut from start of line to cursor. */
+	KEY_CTRL_END	= (KEY_ESC<<8) + 'u', /* Cut from cursor to end of line. */
+	KEY_CTRL_UP		= (KEY_ESC<<8) + 141, /* Uppercase current or following word. */
+	KEY_CTRL_DOWN	= (KEY_ESC<<8) + 145, /* Lowercase current or following word. */
+	KEY_CTRL_LEFT	= (KEY_ESC<<8) + 's', /* Move back a word. */
+	KEY_CTRL_RIGHT	= (KEY_ESC<<8) + 't', /* Move forward a word. */
+	KEY_CTRL_BACKSPACE	= (KEY_ESC<<8) + 127, /* Cut from start of line to cursor. */
 
-	KEY_ALT_DEL		= ALT_KEY(163),		// Cut word following cursor.
-	KEY_ALT_HOME	= ALT_KEY(151), 	// Cut from start of line to cursor.
-	KEY_ALT_END		= ALT_KEY(159), 	// Cut from cursor to end of line.
-	KEY_ALT_UP		= ALT_KEY(152),		// Uppercase current or following word.
-	KEY_ALT_DOWN	= ALT_KEY(160),		// Lowercase current or following word.
-	KEY_ALT_LEFT	= ALT_KEY(155),		// Move back a word.
-	KEY_ALT_RIGHT	= ALT_KEY(157),		// Move forward a word.
-	KEY_ALT_BACKSPACE	= ALT_KEY(KEY_BACKSPACE), // Cut from start of line to cursor.
+	KEY_ALT_DEL		= ALT_KEY(163),		/* Cut word following cursor. */
+	KEY_ALT_HOME	= ALT_KEY(151), 	/* Cut from start of line to cursor. */
+	KEY_ALT_END		= ALT_KEY(159), 	/* Cut from cursor to end of line. */
+	KEY_ALT_UP		= ALT_KEY(152),		/* Uppercase current or following word. */
+	KEY_ALT_DOWN	= ALT_KEY(160),		/* Lowercase current or following word. */
+	KEY_ALT_LEFT	= ALT_KEY(155),		/* Move back a word. */
+	KEY_ALT_RIGHT	= ALT_KEY(157),		/* Move forward a word. */
+	KEY_ALT_BACKSPACE	= ALT_KEY(KEY_BACKSPACE), /* Cut from start of line to cursor. */
 
-	KEY_F1			= (KEY_ESC<<8) + ';',	// Show help.
-	KEY_F2			= (KEY_ESC<<8) + '<',	// Show history.
-	KEY_F3			= (KEY_ESC<<8) + '=',	// Clear history (need confirm).
-	KEY_F4			= (KEY_ESC<<8) + '>',	// Search history with current input.
+	KEY_F1			= (KEY_ESC<<8) + ';',	/* Show help. */
+	KEY_F2			= (KEY_ESC<<8) + '<',	/* Show history. */
+	KEY_F3			= (KEY_ESC<<8) + '=',	/* Clear history (need confirm). */
+	KEY_F4			= (KEY_ESC<<8) + '>',	/* Search history with current input. */
 
-#else // Linux
+#else /* Linux */
 
-	KEY_INSERT		= ESC_KEY4('2','~'),	// vt100 Esc[2~: Paste last cut text.
-	KEY_DEL			= ESC_KEY4('3','~'),	// vt100 Esc[3~: Delete character under cursor.
-	KEY_HOME		= ESC_KEY4('1','~'),	// vt100 Esc[1~: Move cursor to start of line.
-	KEY_END			= ESC_KEY4('4','~'),	// vt100 Esc[4~: Move cursor to end of line.
-	KEY_PGUP		= ESC_KEY4('5','~'),	// vt100 Esc[5~: Move to first line in history.
-	KEY_PGDN		= ESC_KEY4('6','~'),	// vt100 Esc[6~: Move to end of input history.
-	KEY_UP			= ESC_KEY3('A'), 		//       Esc[A: Fetch previous line in history.
-	KEY_DOWN		= ESC_KEY3('B'),		//       Esc[B: Fetch next line in history.
-	KEY_LEFT		= ESC_KEY3('D'), 		//       Esc[D: Move back a character.
-	KEY_RIGHT		= ESC_KEY3('C'), 		//       Esc[C: Move forward a character.
-	KEY_HOME2		= ESC_KEY3('H'),		// xterm Esc[H: Move cursor to start of line.
-	KEY_END2		= ESC_KEY3('F'),		// xterm Esc[F: Move cursor to end of line.
+	KEY_INSERT		= ESC_KEY4('2','~'),	/* vt100 Esc[2~: Paste last cut text. */
+	KEY_DEL			= ESC_KEY4('3','~'),	/* vt100 Esc[3~: Delete character under cursor. */
+	KEY_HOME		= ESC_KEY4('1','~'),	/* vt100 Esc[1~: Move cursor to start of line. */
+	KEY_END			= ESC_KEY4('4','~'),	/* vt100 Esc[4~: Move cursor to end of line. */
+	KEY_PGUP		= ESC_KEY4('5','~'),	/* vt100 Esc[5~: Move to first line in history. */
+	KEY_PGDN		= ESC_KEY4('6','~'),	/* vt100 Esc[6~: Move to end of input history. */
+	KEY_UP			= ESC_KEY3('A'), 		/*       Esc[A: Fetch previous line in history. */
+	KEY_DOWN		= ESC_KEY3('B'),		/*       Esc[B: Fetch next line in history. */
+	KEY_LEFT		= ESC_KEY3('D'), 		/*       Esc[D: Move back a character. */
+	KEY_RIGHT		= ESC_KEY3('C'), 		/*       Esc[C: Move forward a character. */
+	KEY_HOME2		= ESC_KEY3('H'),		/* xterm Esc[H: Move cursor to start of line. */
+	KEY_END2		= ESC_KEY3('F'),		/* xterm Esc[F: Move cursor to end of line. */
 
-	KEY_CTRL_DEL	= ESC_KEY6('3','5','~'), // xterm Esc[3;5~: Cut word following cursor.
-	KEY_CTRL_HOME	= ESC_KEY6('1','5','H'), // xterm Esc[1;5H: Cut from start of line to cursor.
-	KEY_CTRL_END	= ESC_KEY6('1','5','F'), // xterm Esc[1;5F: Cut from cursor to end of line.
-	KEY_CTRL_UP		= ESC_KEY6('1','5','A'), // xterm Esc[1;5A: Uppercase current or following word.
-	KEY_CTRL_DOWN	= ESC_KEY6('1','5','B'), // xterm Esc[1;5B: Lowercase current or following word.
-	KEY_CTRL_LEFT	= ESC_KEY6('1','5','D'), // xterm Esc[1;5D: Move back a word.
-	KEY_CTRL_RIGHT	= ESC_KEY6('1','5','C'), // xterm Esc[1;5C: Move forward a word.
-	KEY_CTRL_BACKSPACE	= 31, 				 // xterm Cut from start of line to cursor.
-	KEY_CTRL_UP2	= ESC_OKEY('A'),		 // vt100 EscOA: Uppercase current or following word.
-	KEY_CTRL_DOWN2	= ESC_OKEY('B'), 		 // vt100 EscOB: Lowercase current or following word.
-	KEY_CTRL_LEFT2	= ESC_OKEY('D'),		 // vt100 EscOD: Move back a word.
-	KEY_CTRL_RIGHT2	= ESC_OKEY('C'),		 // vt100 EscOC: Move forward a word.
+	KEY_CTRL_DEL	= ESC_KEY6('3','5','~'), /* xterm Esc[3;5~: Cut word following cursor. */
+	KEY_CTRL_HOME	= ESC_KEY6('1','5','H'), /* xterm Esc[1;5H: Cut from start of line to cursor. */
+	KEY_CTRL_END	= ESC_KEY6('1','5','F'), /* xterm Esc[1;5F: Cut from cursor to end of line. */
+	KEY_CTRL_UP		= ESC_KEY6('1','5','A'), /* xterm Esc[1;5A: Uppercase current or following word. */
+	KEY_CTRL_DOWN	= ESC_KEY6('1','5','B'), /* xterm Esc[1;5B: Lowercase current or following word. */
+	KEY_CTRL_LEFT	= ESC_KEY6('1','5','D'), /* xterm Esc[1;5D: Move back a word. */
+	KEY_CTRL_RIGHT	= ESC_KEY6('1','5','C'), /* xterm Esc[1;5C: Move forward a word. */
+	KEY_CTRL_BACKSPACE	= 31, 				 /* xterm Cut from start of line to cursor. */
+	KEY_CTRL_UP2	= ESC_OKEY('A'),		 /* vt100 EscOA: Uppercase current or following word. */
+	KEY_CTRL_DOWN2	= ESC_OKEY('B'), 		 /* vt100 EscOB: Lowercase current or following word. */
+	KEY_CTRL_LEFT2	= ESC_OKEY('D'),		 /* vt100 EscOD: Move back a word. */
+	KEY_CTRL_RIGHT2	= ESC_OKEY('C'),		 /* vt100 EscOC: Move forward a word. */
 
-	KEY_ALT_DEL		= ESC_KEY6('3','3','~'), // xterm Esc[3;3~: Cut word following cursor.
-	KEY_ALT_HOME	= ESC_KEY6('1','3','H'), // xterm Esc[1;3H: Cut from start of line to cursor.
-	KEY_ALT_END		= ESC_KEY6('1','3','F'), // xterm Esc[1;3F: Cut from cursor to end of line.
-	KEY_ALT_UP		= ESC_KEY6('1','3','A'), // xterm Esc[1;3A: Uppercase current or following word.
-	KEY_ALT_DOWN	= ESC_KEY6('1','3','B'), // xterm Esc[1;3B: Lowercase current or following word.
-	KEY_ALT_LEFT	= ESC_KEY6('1','3','D'), // xterm Esc[1;3D: Move back a word.
-	KEY_ALT_RIGHT	= ESC_KEY6('1','3','C'), // xterm Esc[1;3C: Move forward a word.
-	KEY_ALT_BACKSPACE	= ALT_KEY(KEY_DEL2), // Cut from start of line to cursor.
+	KEY_ALT_DEL		= ESC_KEY6('3','3','~'), /* xterm Esc[3;3~: Cut word following cursor. */
+	KEY_ALT_HOME	= ESC_KEY6('1','3','H'), /* xterm Esc[1;3H: Cut from start of line to cursor. */
+	KEY_ALT_END		= ESC_KEY6('1','3','F'), /* xterm Esc[1;3F: Cut from cursor to end of line. */
+	KEY_ALT_UP		= ESC_KEY6('1','3','A'), /* xterm Esc[1;3A: Uppercase current or following word. */
+	KEY_ALT_DOWN	= ESC_KEY6('1','3','B'), /* xterm Esc[1;3B: Lowercase current or following word. */
+	KEY_ALT_LEFT	= ESC_KEY6('1','3','D'), /* xterm Esc[1;3D: Move back a word. */
+	KEY_ALT_RIGHT	= ESC_KEY6('1','3','C'), /* xterm Esc[1;3C: Move forward a word. */
+	KEY_ALT_BACKSPACE	= ALT_KEY(KEY_DEL2), /* Cut from start of line to cursor. */
 
-	KEY_F1			= ESC_OKEY('P'),		 // 	  EscOP: Show help.
-	KEY_F2			= ESC_OKEY('Q'),		 // 	  EscOQ: Show history.
-	KEY_F3			= ESC_OKEY('R'),		 //       EscOP: Clear history (need confirm).
-	KEY_F4			= ESC_OKEY('S'),		 //       EscOP: Search history with current input.
+	KEY_F1			= ESC_OKEY('P'),		 /* 	  EscOP: Show help. */
+	KEY_F2			= ESC_OKEY('Q'),		 /* 	  EscOQ: Show history. */
+	KEY_F3			= ESC_OKEY('R'),		 /*       EscOP: Clear history (need confirm). */
+	KEY_F4			= ESC_OKEY('S'),		 /*       EscOP: Search history with current input. */
 
-	KEY_F1_2		= ESC_KEY4('[', 'A'),	 // linux Esc[[A: Show help.
-	KEY_F2_2		= ESC_KEY4('[', 'B'),	 // linux Esc[[B: Show history.
-	KEY_F3_2		= ESC_KEY4('[', 'C'),	 // linux Esc[[C: Clear history (need confirm).
-	KEY_F4_2		= ESC_KEY4('[', 'D'),	 // linux Esc[[D: Search history with current input.
+	KEY_F1_2		= ESC_KEY4('[', 'A'),	 /* linux Esc[[A: Show help. */
+	KEY_F2_2		= ESC_KEY4('[', 'B'),	 /* linux Esc[[B: Show history. */
+	KEY_F3_2		= ESC_KEY4('[', 'C'),	 /* linux Esc[[C: Clear history (need confirm). */
+	KEY_F4_2		= ESC_KEY4('[', 'D'),	 /* linux Esc[[D: Search history with current input. */
 
 #endif
 };
@@ -200,19 +200,19 @@ struct crossline_completions_t {
 
 static char		s_word_delimiter[64] = CROSS_DFT_DELIMITER;
 static char 	s_history_buf[CROSS_HISTORY_MAX_LINE][CROSS_HISTORY_BUF_LEN];
-static uint32_t s_history_id = 0; // Increase always, wrap until UINT_MAX
-static char 	s_clip_buf[CROSS_HISTORY_BUF_LEN]; // Buf to store cut text
+static uint32_t s_history_id = 0; /* Increase always, wrap until UINT_MAX */
+static char 	s_clip_buf[CROSS_HISTORY_BUF_LEN]; /* Buf to store cut text */
 static crossline_completion_callback s_completion_callback = NULL;
-static int		s_paging_print_line = 0; // For paging control
-static int		s_got_resize 		= 0; // Window size changed
+static int		s_paging_print_line = 0; /* For paging control */
+static int		s_got_resize 		= 0; /* Window size changed */
 static crossline_color_e s_prompt_color = CROSSLINE_COLOR_DEFAULT;
 
 static char* 	crossline_readline_edit (char *buf, int size, const char *prompt, int has_input, int in_his);
 static int		crossline_history_dump (FILE *file, int print_id, char *patterns, int sel_id, int paging);
 
-#define isdelim(ch)		(NULL != strchr(s_word_delimiter, ch))	// Check ch is word delimiter
+#define isdelim(ch)		(NULL != strchr(s_word_delimiter, ch))	/* Check ch is word delimiter */
 
-// Debug macro.
+/* Debug macro. */
 #if 0
 static FILE *s_crossline_debug_fp = NULL;
 #define crossline_debug(...) \
@@ -322,14 +322,14 @@ NULL};
 
 /*****************************************************************************/
 
-// Main API to read a line, return buf if get line, return NULL if EOF.
+/* Main API to read a line, return buf if get line, return NULL if EOF. */
 static char* crossline_readline_internal (const char *prompt, char *buf, int size, int has_input)
 {
 	int not_support = 0, len;
 
 	if ((NULL == buf) || (size <= 1))
 		{ return NULL; }
-	if (!isatty(STDIN_FILENO)) {  // input is not from a terminal
+	if (!isatty(STDIN_FILENO)) {  /* input is not from a terminal */
 		not_support = 1;
 	} else {
 		char *term = getenv("TERM");
@@ -357,7 +357,7 @@ char* crossline_readline2 (const char *prompt, char *buf, int size)
 	return crossline_readline_internal (prompt, buf, size, 1);
 }
 
-// Set move/cut word delimiter, defaut is all not digital and alphabetic characters.
+/* Set move/cut word delimiter, defaut is all not digital and alphabetic characters. */
 void  crossline_delimiter_set (const char *delim)
 {
 	if (NULL != delim) {
@@ -411,13 +411,13 @@ int crossline_history_load (const char* filename)
 	return 0;
 }
 
-// Register completion callback.
+/* Register completion callback. */
 void crossline_completion_register (crossline_completion_callback pCbFunc)
 {
 	s_completion_callback = pCbFunc;
 }
 
-// Add completion in callback. Word is must, help for word is optional.
+/* Add completion in callback. Word is must, help for word is optional. */
 void  crossline_completion_add_color (crossline_completions_t *pCompletions, const char *word, 
 											crossline_color_e wcolor, const char *help, crossline_color_e hcolor)
 {
@@ -439,7 +439,7 @@ void crossline_completion_add (crossline_completions_t *pCompletions, const char
 	crossline_completion_add_color (pCompletions, word, CROSSLINE_COLOR_DEFAULT, help, CROSSLINE_COLOR_DEFAULT);
 }
 
-// Set syntax hints in callback.
+/* Set syntax hints in callback. */
 void  crossline_hints_set_color (crossline_completions_t *pCompletions, const char *hints, crossline_color_e color)
 {
 	if ((NULL != pCompletions) && (NULL != hints)) {
@@ -473,8 +473,8 @@ int crossline_paging_check (int line_len)
 	if (s_paging_print_line >= (rows - 1)) {
 		printf ("%s", paging_hints);
 		ch = crossline_getch();
-		if (0 == ch) { crossline_getch(); }	// some terminal server may send 0 after Enter
-		// clear paging hints
+		if (0 == ch) { crossline_getch(); }	/* some terminal server may send 0 after Enter */
+		/* clear paging hints */
 		for (i = 0; i < len; ++i) { printf ("\b"); }
 		for (i = 0; i < len; ++i) { printf (" ");  }
 		for (i = 0; i < len; ++i) { printf ("\b"); }
@@ -499,7 +499,7 @@ void crossline_screen_clear ()
 	(void) ret;
 }
 
-#ifdef _WIN32	// Windows
+#ifdef _WIN32	/* Windows */
 
 int crossline_getch (void)
 {
@@ -589,7 +589,7 @@ void crossline_color_set (crossline_color_e color)
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wAttributes);
 }
 
-#else // Linux
+#else /* Linux */
 
 int crossline_getch ()
 {
@@ -598,11 +598,11 @@ int crossline_getch ()
 	fflush (stdout);
 	if (tcgetattr(STDIN_FILENO, &old_term) < 0)	{ perror("tcsetattr"); }
 	cur_term = old_term;
-	cur_term.c_lflag &= ~(ICANON | ECHO | ISIG); // echoing off, canonical off, no signal chars
+	cur_term.c_lflag &= ~(ICANON | ECHO | ISIG); /* echoing off, canonical off, no signal chars */
 	cur_term.c_cc[VMIN] = 1;
 	cur_term.c_cc[VTIME] = 0;
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &cur_term) < 0)	{ perror("tcsetattr"); }
-	if (read(STDIN_FILENO, &ch, 1) < 0)	{ /* perror("read()"); */ } // signal will interrupt
+	if (read(STDIN_FILENO, &ch, 1) < 0)	{ /* perror("read()"); */ } /* signal will interrupt */
 	if (tcsetattr(STDIN_FILENO, TCSADRAIN, &old_term) < 0)	{ perror("tcsetattr"); }
 	return ch;
 }
@@ -657,7 +657,7 @@ void crossline_color_set (crossline_color_e color)
 		{ printf ("\033[4m"); }
 }
 
-#endif // #ifdef _WIN32
+#endif /* #ifdef _WIN32 */
 
 /*****************************************************************************/
 
@@ -679,7 +679,7 @@ static void str_to_lower (char *str)
 		{ *str = (char)tolower (*str); }
 }
 
-// Match including(no prefix) and excluding(with prefix: '-') patterns.
+/* Match including(no prefix) and excluding(with prefix: '-') patterns. */
 static int crossline_match_patterns (const char *str, char *word[], int num)
 {
 	int i;
@@ -698,7 +698,7 @@ static int crossline_match_patterns (const char *str, char *word[], int num)
 	return 1;
 }
 
-// Split pattern string to individual pattern list, handle composite words embraced with " ".
+/* Split pattern string to individual pattern list, handle composite words embraced with " ". */
 static int crossline_split_patterns (char *patterns, char *pat_list[], int max)
 {
 	int i, num = 0;
@@ -727,8 +727,8 @@ static int crossline_split_patterns (char *patterns, char *pat_list[], int max)
 	return num;
 }
 
-// If patterns is not NULL, will filter history.
-// If sel_id > 0, return the real id+1 in history buf, else return history number dumped.
+/* If patterns is not NULL, will filter history. */
+/* If sel_id > 0, return the real id+1 in history buf, else return history number dumped. */
 static int crossline_history_dump (FILE *file, int print_id, char *patterns, int sel_id, int paging)
 {
 	uint32_t i;
@@ -757,7 +757,7 @@ static int crossline_history_dump (FILE *file, int print_id, char *patterns, int
 	return id;
 }
 
-// Search history, input will be initial search patterns.
+/* Search history, input will be initial search patterns. */
 static int crossline_history_search (char *input)
 {
 	uint32_t his_id = 0, count;
@@ -768,14 +768,14 @@ static int crossline_history_search (char *input)
 		strncpy (pattern, input, sizeof(pattern) - 1);
 		pattern[sizeof(pattern) - 1] = '\0';
 	}
-	// Get search patterns
+	/* Get search patterns */
 	if (NULL == crossline_readline_edit(pattern, sizeof (pattern), "Input Patterns <F1> help: ", (NULL!=input), 1))
 		{ return 0; }
 	strncpy (s_clip_buf, pattern, sizeof(s_clip_buf) - 1);
 	s_clip_buf[sizeof(s_clip_buf) - 1] = '\0';
 	count = crossline_history_dump (stdout, 1, pattern, 0, 1);
-	if (0 == count)	{ return 0; } // Nothing found, just return
-	// Get choice
+	if (0 == count)	{ return 0; } /* Nothing found, just return */
+	/* Get choice */
 	if (NULL == crossline_readline_edit (buf, sizeof (buf), "Input history id: ", (1==count), 1))
 		{ return 0; }
 	his_id = atoi (buf);
@@ -786,7 +786,7 @@ static int crossline_history_search (char *input)
 	return crossline_history_dump (stdout, 1, pattern, his_id, 0);
 }
 
-// Show completions returned by callback.
+/* Show completions returned by callback. */
 static int crossline_show_completions (crossline_completions_t *pCompletions)
 {
 	int i, j, ret = 0, word_len = 0, with_help = 0, rows, cols, word_num;
@@ -795,7 +795,7 @@ static int crossline_show_completions (crossline_completions_t *pCompletions)
 		printf (" \b\n");
 		ret = 1;
 	}
-	// Print syntax hints.
+	/* Print syntax hints. */
 	if ('\0' != pCompletions->hints[0]) {
 		printf ("Please input: "); 
 		crossline_color_set (pCompletions->color_hints);
@@ -810,7 +810,7 @@ static int crossline_show_completions (crossline_completions_t *pCompletions)
 		if ('\0' != pCompletions->help[i][0])	{ with_help = 1; }
 	}
 	if (with_help) {
-		// Print words with help format.
+		/* Print words with help format. */
 		for (i = 0; i < pCompletions->num; ++i) {
 			crossline_color_set (pCompletions->color_word[i]);
 			printf ("%s", pCompletions->word[i]);
@@ -826,7 +826,7 @@ static int crossline_show_completions (crossline_completions_t *pCompletions)
 		return ret;
 	}
 
-	// Print words list in multiple columns.
+	/* Print words list in multiple columns. */
 	crossline_screen_get (&rows, &cols);
 	word_num = (cols - 1 - word_len) / (word_len + 4) + 1;
 	for (i = 1; i <= pCompletions->num; ++i) {
@@ -850,35 +850,35 @@ static int crossline_updown_move (const char *prompt, int *pCurPos, int *pCurNum
 {
 	int rows, cols, len = (int)strlen(prompt), cur_pos=*pCurPos;
 	crossline_screen_get (&rows, &cols);
-	if (!bForce && (*pCurPos == *pCurNum))	{ return 0; } // at end of last line
+	if (!bForce && (*pCurPos == *pCurNum))	{ return 0; } /* at end of last line */
 	if (off < 0) {
-		if ((*pCurPos+len)/cols == 0) { return 0; } // at first line
+		if ((*pCurPos+len)/cols == 0) { return 0; } /* at first line */
 		*pCurPos -= cols;
 		if (*pCurPos < 0) { *pCurPos = 0; }
 		crossline_cursor_move (-1, (*pCurPos+len)%cols-(cur_pos+len)%cols);
 	} else {
-		if ((*pCurPos+len)/cols == (*pCurNum+len)/cols) { return 0; } // at last line
+		if ((*pCurPos+len)/cols == (*pCurNum+len)/cols) { return 0; } /* at last line */
 		*pCurPos += cols;
-		if (*pCurPos > *pCurNum) { *pCurPos = *pCurNum - 1; } // one char left to avoid history shortcut
+		if (*pCurPos > *pCurNum) { *pCurPos = *pCurNum - 1; } /* one char left to avoid history shortcut */
 		crossline_cursor_move (1, (*pCurPos+len)%cols-(cur_pos+len)%cols);
 	}
 	return 1;
 }
 
-// Refreash current print line and move cursor to new_pos.
+/* Refreash current print line and move cursor to new_pos. */
 static void crossline_refreash (const char *prompt, char *buf, int *pCurPos, int *pCurNum, int new_pos, int new_num, int bChg)
 {
 	int i, pos_row, pos_col, len = (int)strlen(prompt);
 	static int rows = 0, cols = 0;
 
 	if (bChg || !rows || s_crossline_win) { crossline_screen_get (&rows, &cols); }
-	if (!bChg) { // just move cursor
+	if (!bChg) { /* just move cursor */
 		pos_row = (new_pos+len)/cols - (*pCurPos+len)/cols;
 		pos_col = (new_pos+len)%cols - (*pCurPos+len)%cols;
 		crossline_cursor_move (pos_row, pos_col);
 	} else {
 		buf[new_num] = '\0';
-		if (bChg > 1) { // refreash as less as possbile
+		if (bChg > 1) { /* refreash as less as possbile */
 			printf ("%s", &buf[bChg-1]);
 		} else {
 			pos_row = (*pCurPos + len) / cols;
@@ -907,7 +907,7 @@ static void crossline_print (const char *prompt, char *buf, int *pCurPos, int *p
 	crossline_refreash (prompt, buf, pCurPos, pCurNum, new_pos, new_num, 1);
 }
 
-// Copy part text[cut_beg, cut_end] from src to dest
+/* Copy part text[cut_beg, cut_end] from src to dest */
 static void crossline_text_copy (char *dest, const char *src, int cut_beg, int cut_end)
 {
 	int len = cut_end - cut_beg;
@@ -918,7 +918,7 @@ static void crossline_text_copy (char *dest, const char *src, int cut_beg, int c
 	}
 }
 
-// Copy from history buffer to dest
+/* Copy from history buffer to dest */
 static void crossline_history_copy (const char *prompt, char *buf, int size, int *pos, int *num, int history_id)
 {
 	strncpy (buf, s_history_buf[history_id % CROSS_HISTORY_MAX_LINE], size - 1);
@@ -928,7 +928,7 @@ static void crossline_history_copy (const char *prompt, char *buf, int size, int
 
 /*****************************************************************************/
 
-// Convert ESC+Key to Alt-Key
+/* Convert ESC+Key to Alt-Key */
 static int crossline_key_esc2alt (int ch)
 {
 	switch (ch) {
@@ -944,7 +944,7 @@ static int crossline_key_esc2alt (int ch)
 	return ch;
 }
 
-// Map other function keys to main key
+/* Map other function keys to main key */
 static int crossline_key_mapping (int ch)
 {
 	switch (ch) {
@@ -965,8 +965,8 @@ static int crossline_key_mapping (int ch)
 	return ch;
 }
 
-#ifdef _WIN32	// Windows
-// Read a KEY from keyboard, is_esc indicats whether it's a function key.
+#ifdef _WIN32	/* Windows */
+/* Read a KEY from keyboard, is_esc indicats whether it's a function key. */
 static int crossline_getkey (int *is_esc)
 {
 	int ch = crossline_getch (), esc;
@@ -976,7 +976,7 @@ static int crossline_getkey (int *is_esc)
 		*is_esc = 1;
 		ch = crossline_getch ();
 		ch = (GetKeyState (VK_MENU) & 0x8000) ? ALT_KEY(ch) : ch + (KEY_ESC<<8);
-	} else if (KEY_ESC == ch) { // Handle ESC+Key
+	} else if (KEY_ESC == ch) { /* Handle ESC+Key */
 		*is_esc = 1;
 		ch = crossline_getkey (&esc);
 		ch = crossline_key_esc2alt (ch);
@@ -988,9 +988,9 @@ static int crossline_getkey (int *is_esc)
 
 void crossline_winchg_reg (void)	{ }
 
-#else // Linux
+#else /* Linux */
 
-// Convert escape sequences to internal special function key
+/* Convert escape sequences to internal special function key */
 static int crossline_get_esckey (int ch)
 {
 	int ch2;
@@ -999,30 +999,30 @@ static int crossline_get_esckey (int ch)
 		ch = crossline_getch ();
 		if ((ch>='0') && (ch<='6')) {
 			ch2 = crossline_getch ();
-			if ('~' == ch2)	{ ch = ESC_KEY4 (ch, ch2); } // ex. Esc[4~
+			if ('~' == ch2)	{ ch = ESC_KEY4 (ch, ch2); } /* ex. Esc[4~ */
 			else if (';' == ch2) {
 				ch2 = crossline_getch();
 				if (('5' != ch2) && ('3' != ch2))
 					{ return 0; }
-				ch = ESC_KEY6 (ch, ch2, crossline_getch()); // ex. Esc[1;5B
+				ch = ESC_KEY6 (ch, ch2, crossline_getch()); /* ex. Esc[1;5B */
 			}
 		} else if ('[' == ch) {
-			ch = ESC_KEY4 ('[', crossline_getch());	// ex. Esc[[A
-		} else { ch = ESC_KEY3 (ch); }	// ex. Esc[A
+			ch = ESC_KEY4 ('[', crossline_getch());	/* ex. Esc[[A */
+		} else { ch = ESC_KEY3 (ch); }	/* ex. Esc[A */
 	} else if ('O' == ch) {
-		ch = ESC_OKEY (crossline_getch());	// ex. EscOP
-	} else { ch = ALT_KEY (ch); } // ex. Alt+Backspace
+		ch = ESC_OKEY (crossline_getch());	/* ex. EscOP */
+	} else { ch = ALT_KEY (ch); } /* ex. Alt+Backspace */
 	return ch;
 }
 
-// Read a KEY from keyboard, is_esc indicats whether it's a function key.
+/* Read a KEY from keyboard, is_esc indicats whether it's a function key. */
 static int crossline_getkey (int *is_esc)
 {
 	int ch = crossline_getch();
 	if (KEY_ESC == ch) {
 		*is_esc = 1;
 		ch = crossline_getch ();
-		if (KEY_ESC == ch) { // Handle ESC+Key
+		if (KEY_ESC == ch) { /* Handle ESC+Key */
 			ch = crossline_get_esckey (0);
 			ch = crossline_key_mapping (ch);
 			ch = crossline_key_esc2alt (ch);
@@ -1043,7 +1043,7 @@ static void crossline_winchg_reg (void)
 	s_got_resize = 0;
 }
 
-#endif // #ifdef _WIN32
+#endif /* #ifdef _WIN32 */
 
 /*****************************************************************************/
 
@@ -1072,22 +1072,22 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 		ch = crossline_getkey (&is_esc);
 		ch = crossline_key_mapping (ch);
 
-		if (s_got_resize) { // Handle window resizing for Linux, Windows can handle it automatically
+		if (s_got_resize) { /* Handle window resizing for Linux, Windows can handle it automatically */
 			new_pos = pos;
-			crossline_refreash (prompt, buf, &pos, &num, 0, num, 0); // goto beginning of line
-			printf ("\x1b[J"); // clear to end of screen
+			crossline_refreash (prompt, buf, &pos, &num, 0, num, 0); /* goto beginning of line */
+			printf ("\x1b[J"); /* clear to end of screen */
 			crossline_refreash (prompt, buf, &pos, &num, new_pos, num, 1);
 			s_got_resize = 0;
 		}
 
 		switch (ch) {
 /* Misc Commands */
-		case KEY_F1:	// Show help
+		case KEY_F1:	/* Show help */
 			crossline_show_help (in_his);
 			crossline_print (prompt, buf, &pos, &num, pos, num);
 			break;
 
-		case KEY_DEBUG:	// Enter keyboard debug mode
+		case KEY_DEBUG:	/* Enter keyboard debug mode */
 			printf(" \b\nEnter keyboard debug mode, <Ctrl-C> to exit debug\n");
 			while (CTRL_KEY('C') != (ch=crossline_getch()))
 				{ printf ("%3d 0x%02x (%c)\n", ch, ch, isprint(ch) ? ch : ' '); }
@@ -1095,19 +1095,19 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			break;
 
 /* Move Commands */
-		case KEY_LEFT:	// Move back a character.
+		case KEY_LEFT:	/* Move back a character. */
 		case CTRL_KEY('B'):
 			if (pos > 0)
 				{ crossline_refreash (prompt, buf, &pos, &num, pos-1, num, 0); }
 			break;
 
-		case KEY_RIGHT:	// Move forward a character.
+		case KEY_RIGHT:	/* Move forward a character. */
 		case CTRL_KEY('F'):
 			if (pos < num)
 				{ crossline_refreash (prompt, buf, &pos, &num, pos+1, num, 0); }
 			break;
 
-		case ALT_KEY('b'):	// Move back a word.
+		case ALT_KEY('b'):	/* Move back a word. */
 		case ALT_KEY('B'):
 		case KEY_CTRL_LEFT:
 		case KEY_ALT_LEFT:
@@ -1116,7 +1116,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, new_pos?new_pos+1:new_pos, num, 0);
 			break;
 
-		case ALT_KEY('f'):	 // Move forward a word.
+		case ALT_KEY('f'):	 /* Move forward a word. */
 		case ALT_KEY('F'):
 		case KEY_CTRL_RIGHT:
 		case KEY_ALT_RIGHT:
@@ -1125,49 +1125,49 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, new_pos, num, 0);
 			break;
 
-		case CTRL_KEY('A'):	// Move cursor to start of line.
+		case CTRL_KEY('A'):	/* Move cursor to start of line. */
 		case KEY_HOME:
 			crossline_refreash (prompt, buf, &pos, &num, 0, num, 0);
 			break;
 
-		case CTRL_KEY('E'):	// Move cursor to end of line
+		case CTRL_KEY('E'):	/* Move cursor to end of line */
 		case KEY_END:
 			crossline_refreash (prompt, buf, &pos, &num, num, num, 0);
 			break;
 
-		case CTRL_KEY('L'):	// Clear screen and redisplay line
+		case CTRL_KEY('L'):	/* Clear screen and redisplay line */
 			crossline_screen_clear ();
 			crossline_print (prompt, buf, &pos, &num, pos, num);
 			break;
 
-		case KEY_CTRL_UP: // Move to up line
+		case KEY_CTRL_UP: /* Move to up line */
 		case KEY_ALT_UP:
 			crossline_updown_move (prompt, &pos, &num, -1, 1);
 			break;
 
-		case KEY_ALT_DOWN: // Move to down line
+		case KEY_ALT_DOWN: /* Move to down line */
 		case KEY_CTRL_DOWN:
 			crossline_updown_move (prompt, &pos, &num, 1, 1);
 			break;
 
 /* Edit Commands */
-		case KEY_BACKSPACE: // Delete char to left of cursor (same with CTRL_KEY('H'))
+		case KEY_BACKSPACE: /* Delete char to left of cursor (same with CTRL_KEY('H')) */
 			if (pos > 0) {
 				memmove (&buf[pos-1], &buf[pos], num - pos);
 				crossline_refreash (prompt, buf, &pos, &num, pos-1, num-1, 1);
 			}
 			break;
 
-		case KEY_DEL:	// Delete character under cursor
+		case KEY_DEL:	/* Delete character under cursor */
 		case CTRL_KEY('D'):
 			if (pos < num) {
 				memmove (&buf[pos], &buf[pos+1], num - pos - 1);
 				crossline_refreash (prompt, buf, &pos, &num, pos, num - 1, 1);
-			} else if ((0 == num) && (ch == CTRL_KEY('D'))) // On an empty line, EOF
+			} else if ((0 == num) && (ch == CTRL_KEY('D'))) /* On an empty line, EOF */
 				 { printf (" \b\n"); read_end = -1; }
 			break;
 
-		case ALT_KEY('u'):	// Uppercase current or following word.
+		case ALT_KEY('u'):	/* Uppercase current or following word. */
 		case ALT_KEY('U'):
 			for (new_pos = pos; (new_pos < num) && isdelim(buf[new_pos]); ++new_pos)	;
 			for (; (new_pos < num) && !isdelim(buf[new_pos]); ++new_pos)
@@ -1175,7 +1175,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, new_pos, num, 1);
 			break;
 
-		case ALT_KEY('l'):	// Lowercase current or following word.
+		case ALT_KEY('l'):	/* Lowercase current or following word. */
 		case ALT_KEY('L'):
 			for (new_pos = pos; (new_pos < num) && isdelim(buf[new_pos]); ++new_pos)	;
 			for (; (new_pos < num) && !isdelim(buf[new_pos]); ++new_pos)
@@ -1183,7 +1183,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, new_pos, num, 1);
 			break;
 
-		case ALT_KEY('c'):	// Capitalize current or following word.
+		case ALT_KEY('c'):	/* Capitalize current or following word. */
 		case ALT_KEY('C'):
 			for (new_pos = pos; (new_pos < num) && isdelim(buf[new_pos]); ++new_pos)	;
 			if (new_pos<num)
@@ -1192,7 +1192,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, new_pos, num, 1);
 			break;
 
-		case ALT_KEY('\\'): // Delete whitespace around cursor.
+		case ALT_KEY('\\'): /* Delete whitespace around cursor. */
 			for (new_pos = pos; (new_pos > 0) && (' ' == buf[new_pos]); --new_pos)	;
 			memmove (&buf[new_pos], &buf[pos], num - pos);
 			crossline_refreash (prompt, buf, &pos, &num, new_pos, num - (pos-new_pos), 1);
@@ -1201,7 +1201,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, pos, num - (new_pos-pos), 1);
 			break;
 
-		case CTRL_KEY('T'): // Transpose previous character with current character.
+		case CTRL_KEY('T'): /* Transpose previous character with current character. */
 			if ((pos > 0) && !isdelim(buf[pos]) && !isdelim(buf[pos-1])) {
 				ch = buf[pos];
 				buf[pos] = buf[pos-1];
@@ -1216,14 +1216,14 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			break;
 
 /* Cut&Paste Commands */
-		case CTRL_KEY('K'): // Cut from cursor to end of line.
+		case CTRL_KEY('K'): /* Cut from cursor to end of line. */
 		case KEY_CTRL_END:
 		case KEY_ALT_END:
 			crossline_text_copy (s_clip_buf, buf, pos, num);
 			crossline_refreash (prompt, buf, &pos, &num, pos, pos, 1);
 			break;
 
-		case CTRL_KEY('U'): // Cut from start of line to cursor.
+		case CTRL_KEY('U'): /* Cut from start of line to cursor. */
 		case KEY_CTRL_HOME:
 		case KEY_ALT_HOME:
 			crossline_text_copy (s_clip_buf, buf, 0, pos);
@@ -1231,16 +1231,16 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, 0, num - pos, 1);
 			break;
 
-		case CTRL_KEY('X'):	// Cut whole line.
+		case CTRL_KEY('X'):	/* Cut whole line. */
 			crossline_text_copy (s_clip_buf, buf, 0, num);
-			// fall through
-		case ALT_KEY('r'):	// Revert line
+			/* fall through */
+		case ALT_KEY('r'):	/* Revert line */
 		case ALT_KEY('R'):
 			crossline_refreash (prompt, buf, &pos, &num, 0, 0, 1);
 			break;
 
-		case CTRL_KEY('W'): // Cut whitespace (not word) to left of cursor.
-		case KEY_ALT_BACKSPACE: // Cut word to left of cursor.
+		case CTRL_KEY('W'): /* Cut whitespace (not word) to left of cursor. */
+		case KEY_ALT_BACKSPACE: /* Cut word to left of cursor. */
 		case KEY_CTRL_BACKSPACE:
 			new_pos = pos;
 			if ((new_pos > 1) && isdelim(buf[new_pos-1]))	{ --new_pos; }
@@ -1256,7 +1256,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, new_pos, num - (pos-new_pos), 1);
 			break;
 
-		case ALT_KEY('d'): // Cut word following cursor.
+		case ALT_KEY('d'): /* Cut word following cursor. */
 		case ALT_KEY('D'):
 		case KEY_ALT_DEL:
 		case KEY_CTRL_DEL:
@@ -1267,7 +1267,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, pos, num - (new_pos-pos), 1);
 			break;
 
-		case CTRL_KEY('Y'):	// Paste last cut text.
+		case CTRL_KEY('Y'):	/* Paste last cut text. */
 		case CTRL_KEY('V'):
 		case KEY_INSERT:
 			if ((len=(int)strlen(s_clip_buf)) + num < size) {
@@ -1278,8 +1278,8 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			break;
 
 /* Complete Commands */
-		case KEY_TAB:		// Autocomplete (same with CTRL_KEY('I'))
-		case ALT_KEY('='):	// List possible completions.
+		case KEY_TAB:		/* Autocomplete (same with CTRL_KEY('I')) */
+		case ALT_KEY('='):	/* List possible completions. */
 		case ALT_KEY('?'):
 			if (in_his || (NULL == s_completion_callback) || (pos != num))
 				{ break; }
@@ -1290,7 +1290,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			if (completions.num >= 1) {
 				if (KEY_TAB == ch) {
 					len2 = len = (int)strlen(completions.word[0]);
-					// Find common string for autocompletion
+					/* Find common string for autocompletion */
 					for (i = 1; (i < completions.num) && (len > 0); ++i) {
 						while ((len > 0) && strncasecmp(completions.word[0], completions.word[i], len)) { len--; }
 					}
@@ -1311,8 +1311,8 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			break;
 
 /* History Commands */
-		case KEY_UP:		// Fetch previous line in history.
-			if (crossline_updown_move (prompt, &pos, &num, -1, 0)) { break; } // check multi line move up
+		case KEY_UP:		/* Fetch previous line in history. */
+			if (crossline_updown_move (prompt, &pos, &num, -1, 0)) { break; } /* check multi line move up */
 		case CTRL_KEY('P'):
 			if (in_his) { break; }
 			if (!copy_buf)
@@ -1321,8 +1321,8 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 				{ crossline_history_copy (prompt, buf, size, &pos, &num, --history_id); }
 			break;
 
-		case KEY_DOWN:		// Fetch next line in history.
-			if (crossline_updown_move (prompt, &pos, &num, 1, 0)) { break; } // check multi line move down
+		case KEY_DOWN:		/* Fetch next line in history. */
+			if (crossline_updown_move (prompt, &pos, &num, 1, 0)) { break; } /* check multi line move down */
 		case CTRL_KEY('N'):
 			if (in_his) { break; }
 			if (!copy_buf)
@@ -1335,9 +1335,9 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 				buf[size - 1] = '\0';
 				crossline_refreash (prompt, buf, &pos, &num, (int)strlen(buf), (int)strlen(buf), 1);
 			}
-			break; //case UP/DOWN
+			break; /* ase UP/DOWN */
 
-		case ALT_KEY('<'):	// Move to first line in history.
+		case ALT_KEY('<'):	/* Move to first line in history. */
 		case KEY_PGUP:
 			if (in_his) { break; }
 			if (!copy_buf)
@@ -1348,7 +1348,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			}
 			break;
 
-		case ALT_KEY('>'):	// Move to end of input history.
+		case ALT_KEY('>'):	/* Move to end of input history. */
 		case KEY_PGDN:
 			if (in_his) { break; }
 			if (!copy_buf)
@@ -1359,9 +1359,9 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_refreash (prompt, buf, &pos, &num, (int)strlen(buf), (int)strlen(buf), 1);
 			break;
 
-		case CTRL_KEY('R'):	// Search history
+		case CTRL_KEY('R'):	/* Search history */
 		case CTRL_KEY('S'):
-		case KEY_F4:		// Search history with current input.
+		case KEY_F4:		/* Search history with current input. */
 			if (in_his) { break; }
 			crossline_text_copy (input, buf, 0, num);
 			search_his = crossline_history_search ((KEY_F4 == ch) ? buf : NULL);
@@ -1372,14 +1372,14 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			crossline_print (prompt, buf, &pos, &num, (int)strlen(buf), (int)strlen(buf));
 			break;
 
-		case KEY_F2:	// Show history
+		case KEY_F2:	/* Show history */
 			if (in_his || (0 == s_history_id)) { break; }
 			printf (" \b\n");
 			crossline_history_show ();
 			crossline_print (prompt, buf, &pos, &num, pos, num);
 			break;
 
-		case KEY_F3:	// Clear history
+		case KEY_F3:	/* Clear history */
 			if (in_his) { break; }
 			printf(" \b\n!!! Confirm to clear history [y]: ");
 			if ('y' == crossline_getch()) {
@@ -1392,14 +1392,14 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 			break;
 
 /* Control Commands */
-		case KEY_ENTER:		// Accept line (same with CTRL_KEY('M'))
-		case KEY_ENTER2:	// same with CTRL_KEY('J')
+		case KEY_ENTER:		/* Accept line (same with CTRL_KEY('M')) */
+		case KEY_ENTER2:	/* same with CTRL_KEY('J') */
 			crossline_refreash (prompt, buf, &pos, &num, num, num, 0);
 			printf (" \b\n");
 			read_end = 1;
 			break;
 
-		case CTRL_KEY('C'):	// Abort line.
+		case CTRL_KEY('C'):	/* Abort line. */
 		case CTRL_KEY('G'):
 			crossline_refreash (prompt, buf, &pos, &num, num, num, 0);
 			if (CTRL_KEY('C') == ch)	{ printf (" \b^C\n"); }
@@ -1411,7 +1411,7 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 
 		case CTRL_KEY('Z'):
 #ifndef _WIN32
-			raise(SIGSTOP);    // Suspend current process
+			raise(SIGSTOP);    /* Suspend current process */
 			crossline_print (prompt, buf, &pos, &num, pos, num);
 #endif
 			break;
@@ -1424,14 +1424,14 @@ static char* crossline_readline_edit (char *buf, int size, const char *prompt, i
 				copy_buf = 0;
 			}
 			break;
-        } // switch( ch )
+        } /* switch( ch ) */
 	 	fflush(stdout);
 	} while ( !read_end );
 
 	if (read_end < 0) { return NULL; }
 	if ((num > 0) && (' ' == buf[num-1]))	{ num--; }
 	buf[num] = '\0';
-	if (!in_his && (num > 0) && strcmp(buf,"history")) { // Save history
+	if (!in_his && (num > 0) && strcmp(buf,"history")) { /* Save history */
 		if ((0 == s_history_id) || strncmp (buf, s_history_buf[(s_history_id-1)%CROSS_HISTORY_MAX_LINE], CROSS_HISTORY_BUF_LEN)) {
 			strncpy (s_history_buf[s_history_id % CROSS_HISTORY_MAX_LINE], buf, CROSS_HISTORY_BUF_LEN);
 			s_history_buf[s_history_id % CROSS_HISTORY_MAX_LINE][CROSS_HISTORY_BUF_LEN - 1] = '\0';

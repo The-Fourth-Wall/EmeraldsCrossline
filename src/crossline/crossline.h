@@ -70,16 +70,16 @@ typedef enum {
 	CROSSLINE_COLOR_DEFAULT         = CROSSLINE_FGCOLOR_DEFAULT | CROSSLINE_BGCOLOR_DEFAULT
 } crossline_color_e;
 
-// Main API to read a line, return buf if get line, return NULL if EOF.
+/* Main API to read a line, return buf if get line, return NULL if EOF. */
 extern char* crossline_readline (const char *prompt, char *buf, int size);
 
-// Same with crossline_readline except buf holding initial input for editing.
+/* Same with crossline_readline except buf holding initial input for editing. */
 extern char* crossline_readline2 (const char *prompt, char *buf, int size);
 
-// Set move/cut word delimiter, default is all not digital and alphabetic characters.
+/* Set move/cut word delimiter, default is all not digital and alphabetic characters. */
 extern void  crossline_delimiter_set (const char *delim);
 
-// Read a character from terminal without echo
+/* Read a character from terminal without echo */
 extern int	 crossline_getch (void);
 
 
@@ -87,16 +87,16 @@ extern int	 crossline_getch (void);
  * History APIs
  */
 
-// Save history to file
+/* Save history to file */
 extern int   crossline_history_save (const char *filename);
 
-// Load history from file
+/* Load history from file */
 extern int   crossline_history_load (const char *filename);
 
-// Show history in buffer
+/* Show history in buffer */
 extern void  crossline_history_show (void);
 
-// Clear history
+/* Clear history */
 extern void  crossline_history_clear (void);
 
 
@@ -107,20 +107,20 @@ extern void  crossline_history_clear (void);
 typedef struct crossline_completions_t crossline_completions_t;
 typedef void (*crossline_completion_callback) (const char *buf, crossline_completions_t *pCompletions);
 
-// Register completion callback
+/* Register completion callback */
 extern void  crossline_completion_register (crossline_completion_callback pCbFunc);
 
-// Add completion in callback. Word is must, help for word is optional.
+/* Add completion in callback. Word is must, help for word is optional. */
 extern void  crossline_completion_add (crossline_completions_t *pCompletions, const char *word, const char *help);
 
-// Add completion with color.
+/* Add completion with color. */
 extern void  crossline_completion_add_color (crossline_completions_t *pCompletions, const char *word, 
 														crossline_color_e wcolor, const char *help, crossline_color_e hcolor);
 
-// Set syntax hints in callback
+/* Set syntax hints in callback */
 extern void  crossline_hints_set (crossline_completions_t *pCompletions, const char *hints);
 
-// Set syntax hints with color
+/* Set syntax hints with color */
 extern void  crossline_hints_set_color (crossline_completions_t *pCompletions, const char *hints, crossline_color_e color);
 
 
@@ -128,11 +128,11 @@ extern void  crossline_hints_set_color (crossline_completions_t *pCompletions, c
  * Paging APIs
  */
 
-// Enable/Disble paging control
+/* Enable/Disble paging control */
 extern int crossline_paging_set (int enable);
 
-// Check paging after print a line, return 1 means quit, 0 means continue
-// if you know only one line is printed, just give line_len = 1
+/* Check paging after print a line, return 1 means quit, 0 means continue */
+/* if you know only one line is printed, just give line_len = 1 */
 extern int  crossline_paging_check (int line_len);
 
 
@@ -140,23 +140,23 @@ extern int  crossline_paging_check (int line_len);
  * Cursor APIs
  */
 
-// Get screen rows and columns
+/* Get screen rows and columns */
 extern void crossline_screen_get (int *pRows, int *pCols);
 
-// Clear current screen
+/* Clear current screen */
 extern void crossline_screen_clear (void);
 
-// Get cursor postion (0 based)
+/* Get cursor postion (0 based) */
 extern int  crossline_cursor_get (int *pRow, int *pCol);
 
-// Set cursor postion (0 based)
+/* Set cursor postion (0 based) */
 extern void crossline_cursor_set (int row, int col);
 
-// Move cursor with row and column offset, row_off>0 move up row_off lines, <0 move down abs(row_off) lines
-// =0 no move for row, similar with col_off
+/* Move cursor with row and column offset, row_off>0 move up row_off lines, <0 move down abs(row_off) lines */
+/* =0 no move for row, similar with col_off */
 extern void crossline_cursor_move (int row_off, int col_off);
 
-// Hide or show cursor
+/* Hide or show cursor */
 extern void crossline_cursor_hide (int bHide);
 
 
@@ -164,11 +164,11 @@ extern void crossline_cursor_hide (int bHide);
  * Color APIs
  */
 
-// Set text color, CROSSLINE_COLOR_DEFAULT will revert to default setting
-// `\t` is not supported in Linux terminal, same below. Don't use `\n` in Linux terminal, same below.
+/* Set text color, CROSSLINE_COLOR_DEFAULT will revert to default setting */
+/* `\t` is not supported in Linux terminal, same below. Don't use `\n` in Linux terminal, same below. */
 extern void crossline_color_set (crossline_color_e color);
 
-// Set default prompt color
+/* Set default prompt color */
 extern void crossline_prompt_color_set (crossline_color_e color);
 
 #ifdef __cplusplus

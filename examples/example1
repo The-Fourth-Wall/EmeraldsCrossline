@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd .. && em build lib release && cd examples
-clang ../export/crossline.o example.c
+clang ../export/EmeraldsCrossline.a example.c
 ./a.out
